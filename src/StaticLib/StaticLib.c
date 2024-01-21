@@ -11,5 +11,51 @@
 bool radix_sort(item* begin, const item* end, int radix)
 {
 	// ToDo: 基数ソートを実装する
+	if (begin==NULL||end==NULL||begin>end||radix<1)
 	return false;
+
+	else
+	{
+		int n;
+		n = end - begin;
+		int *rad;// 基数を取り出した後保存
+		rad = malloc(sizeof(int)*n);
+		if (rad == NULL)exit(0);
+
+		item* y = (item*)malloc(sizeof(item) * n);
+		if (y == NULL)exit(0);
+
+		int k;
+		int m = 1;// 基数を取り出す桁
+
+		while (m <= radix)
+		{
+			for (int i = 0; i < n; i++)
+			{
+				rad[i] = ((begin + i)->key / m) % 10;
+			}
+
+			k = 0;
+			for (int i = 0; i <= 9; i++)
+			{
+				for (int j = 0; j < n; j++)
+					if (rad[j] == i)
+					{
+						y[k++] = *(begin + j);
+						
+					}
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				*(begin + i) = y[i];
+			}
+			m *= 10;
+		}
+
+		free(rad);
+		free(y);
+
+		return true;
+	}
 }
