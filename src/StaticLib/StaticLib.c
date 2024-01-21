@@ -10,6 +10,10 @@
 // radix: 基数
 bool radix_sort(item* begin, const item* end, int radix)
 {
-	// ToDo: 基数ソートを実装する
-	return false;
+	if (begin == NULL || end == NULL || radix <= 0) {
+		return false;
+	}
+		
+	
+	return true;
 }
